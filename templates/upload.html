@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+    <div class="page-header">
+        <br>
+    <h1> Import File </h1>
+    </div>
+        <p class="lead"> Choose file from your local computer to get start! (<code>csv file</code> and <code>xlsx file</code> only)</p>
+    <form method=post enctype=multipart/form-data>
+        <input type=file name=file class="form-control-file border">
+        <br>
+        <input type=submit value=Upload  class="btn btn-outline-primary">
+    </form>
+    <br>
+    <br>
+    <h5 class="sub-header">{{ tablename }}</h5>
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            {% for col in colNames %}
+                {% if col in  numVal  %}
+                <th>
+                    <span class="badge badge-primary">norminal</span>
+                </th>
+                {% elif col in conVal %}
+                <th> <span class="badge badge-secondary">continuous</span></th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            {% for col in colNames %}
+                {% if col in  numVal  %}
+                <th> <a href="{{ col }}"> {{ col }}</a></th>
+                {% elif col in conVal %}
+                <th> <a href="{{ col }}"> {{ col }}</a></th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {%  for data in rowData %}
+        <tr>
+            {% for col, row in zip(colNames, data) %}
+                <td> {{ row }}</td>
+            {%  endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    </div> <!-- container -->
+
+{% endblock %}
