@@ -9,6 +9,10 @@ Python 3.8
 1. Clone this repository
 2. Install dependencies
 3. Run app.py
+4. Enter http://127.0.0.1:5000/
 
+### User Interface
+1. Initial page
+<img width="862" alt="스크린샷 2020-07-14 오후 4 10 13" src="https://user-images.githubusercontent.com/58394729/87395533-8145a400-c5ec-11ea-8913-d835005951b4.png">
 
 
