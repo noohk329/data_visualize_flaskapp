@@ -21,6 +21,9 @@
     <link href="/static/css/sticky-footer-navbar.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
      {% block stylesheet %}{% endblock %}
 </head>
 <body>
@@ -33,10 +36,10 @@
 
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item {{ 'active' if request.endpoint=='upload' else '' }}">
             <a class="nav-link" href="{{ url_for('upload') }}"> Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ 'active' if request.endpoint=='graphbuilder' else '' }}">
             <a class="nav-link" href="{{ url_for('graphbuilder') }}"> Graph Builder </a>
           </li>
           <li class="nav-item">
@@ -68,6 +71,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 
 </body>
 </html>

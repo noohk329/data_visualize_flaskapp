@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
+{% set active_page = "scatter" %}
 
 {% block content %}
+    {% block javascript %}
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+{% endblock %}
 <div class="container">
 <div class="page-header">
     <br>
@@ -9,7 +14,30 @@
     <button type="button" class="btn btn-outline-primary"> Undo </button>
     <input class="btn btn-outline-dark" type="reset" value="Reset">
 </div>
+    <br>
+    <br>
+    <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint=='scatter' else '' }}" href="{{ url_for('scatter') }}"> Scatter Plot </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint=='boxplot' else '' }}" href="{{ url_for('boxplot') }}"> Box Plot </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint=='barchart' else '' }}" href="{{ url_for('barchart') }}"> Bar Chart </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint=='histogram' else '' }}" href="{{ url_for('histogram') }}"> Histogram </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ 'active' if request.endpoint=='piechart' else '' }}" href="{{ url_for('piechart') }}"> Pie Chart </a>
+            </li>
+    </ul>
 
+    <br>
+    <div class="card">
+        {% block graph %}{% endblock %}
+    </div>
 </div>
 
 {% endblock %}

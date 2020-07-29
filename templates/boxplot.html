@@ -1,0 +1,49 @@
+{% extends "graphbuilder.html" %}
+{% set page_name = "boxplot" %}
+
+{% block graph %}
+
+<div class="card-header">
+        Box Plot
+    </div>
+     <div class="card-body">
+
+      <form action="{{ url_for('boxplot') }}" method="POST">
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+        <div class="input-group-text"> X axis </div>
+        </div>
+        <select class="custom-select" name="xcol" required>
+            <option value="">- Select Columns -</option>
+            {% for col in xcolumns %}
+                <option value="{{ col }}">{{ col }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+    <div class="input-group">
+        <div class="input-group-prepend">
+        <div class="input-group-text"> Y axis </div>
+        </div>
+        <select class="custom-select" name="ycol" required>
+            <option value="">- Select Columns -</option>
+            {% for col in ycolumns %}
+                <option value="{{ col }}">{{ col }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+       <input type="submit" class="btn btn-outline-primary" value="Apply">  </input>
+    <br>
+    </div>
+      </form>
+     <div class="chart" id="boxplot">
+        <script>
+            var graphs = {{ plot | safe }};
+            Plotly.newPlot('boxplot', graphs.data, graphs.layout);
+        </script>
+    </div>
+
+  </div>
+{% endblock %}

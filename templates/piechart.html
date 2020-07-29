@@ -1,0 +1,39 @@
+{% extends "graphbuilder.html" %}
+{% set page_name= "piechart" %}
+{% set active_page= "piechart" %}
+
+{% block graph %}
+<div class="card-header">
+        Pie Chart
+</div>
+     <div class="card-body">
+    <form action="{{ url_for('piechart') }}" method="POST">
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+        <div class="input-group-text"> Columns </div>
+        </div>
+        <select class="custom-select" name="col" required>
+            <option value="">- Select Columns -</option>
+            {% for col in columns %}
+                <option value="{{ col }}" name="x">{{ col }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+       <input type="submit" class="btn btn-outline-primary" value="Apply">  </input>
+
+    <br>
+    </div>
+    </form>
+
+     <div class="chart" id="piechart">
+        <script>
+            var graphs = {{ plot | safe }};
+            Plotly.newPlot('piechart', graphs.data, graphs.layout);
+        </script>
+    </div>
+
+  </div>
+
+{% endblock %}
